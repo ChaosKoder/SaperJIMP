@@ -23,8 +23,16 @@ int main() {
 
     while (1) {
         wypiszPlansze(planszaWidoczna);
-        printf("Podaj polecenie (f x y - flaga, r x y - odkryj): ");
-        scanf(" %c %d %d", &komenda, &wiersz, &kolumna);
+        printf("Podaj polecenie (f x y - flaga, r x y - odkryj, s - przerwij gre): ");
+        scanf(" %c", &komenda);
+
+        if (komenda == 's') {
+            printf("Przerwano gre.\n");
+            wypiszPlansze(plansza);
+            break;
+        }
+
+        scanf(" %d %d", &wiersz, &kolumna);
 
         if (!czyRuchPoprawny(wiersz, kolumna)) {
             printf("Nieprawidlowy ruch. Sprobuj ponownie.\n");
@@ -33,13 +41,19 @@ int main() {
 
         if (komenda == 'f') {
             planszaWidoczna[wiersz][kolumna] = (planszaWidoczna[wiersz][kolumna] == '#') ? 'F' : '#';
-        } else if (komenda == 'r') {
+        } 
+        else if (komenda == 'r') {
             if (pierwszyRuch) {
                 rozmiescMiny(wiersz, kolumna);
                 pierwszyRuch = 0;
             }
 
-            if (plansza[wiersz][kolumna] == 'X') {
+            if (planszaWidoczna[wiersz][kolumna] == 'F') {
+                printf("W tym miejscu znajduje sie flaga! Wybierz inne pole. \n");
+                continue;
+            }
+
+            if (plansza[wiersz][kolumna] == 'X' && planszaWidoczna[wiersz][kolumna] != 'F') {
                 printf("BUM! Trafiles na mine. Koniec gry.\n");
                 wypiszPlansze(plansza);
                 break;
@@ -54,7 +68,8 @@ int main() {
                 zaktualizujNajlepszeWyniki(wynik);
                 break;
             }
-        } else {
+        } 
+        else {
             printf("Nieznane polecenie. Sprobuj ponownie.\n");
         }
     }
