@@ -170,7 +170,10 @@ void ustawPoziomTrudnosci() {
     printf("3. Trudny (16x30, 99 min)\n");
     printf("4. Wlasny\n");
     scanf("%d", &wybor);
-
+    int wcheck = 0;
+    int minycheck = 0;
+    int wierszecheck = 0;
+    int kolumnycheck = 0;
     switch (wybor) {
         case 1:
             wiersze = LATWY_WIERSZE;
@@ -191,10 +194,6 @@ void ustawPoziomTrudnosci() {
             mnoznikWyniku = 3;
             break;
         case 4:
-            int wcheck = 0;
-            int minycheck = 0;
-            int wierszecheck = 0;
-            int kolumnycheck = 0;
             printf("Podaj liczbe wierszy, kolumn i min: ");
             while (wcheck == 0){
                 scanf("%d %d %d", &wierszecheck, &kolumnycheck, &minycheck);
