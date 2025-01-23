@@ -191,9 +191,24 @@ void ustawPoziomTrudnosci() {
             mnoznikWyniku = 3;
             break;
         case 4:
+            int wcheck = 0;
+            int minycheck = 0;
+            int wierszecheck = 0;
+            int kolumnycheck = 0;
             printf("Podaj liczbe wierszy, kolumn i min: ");
-            scanf("%d %d %d", &wiersze, &kolumny, &miny);
-            mnoznikWyniku = 1;
+            while (wcheck == 0){
+                scanf("%d %d %d", &wierszecheck, &kolumnycheck, &minycheck);
+                if (minycheck < wierszecheck*kolumnycheck){
+                    wcheck = 1;
+                }
+                else{
+                    printf("Nieprawidlowa liczba min. Podaj poprawne wartosci: ");
+                }
+                mnoznikWyniku = 1;
+            }
+            wiersze=wierszecheck;
+            kolumny=kolumnycheck;
+            miny=minycheck;
             break;
         default:
             printf("Nieprawidlowy wybor. Ustawiam poziom latwy.\n");
