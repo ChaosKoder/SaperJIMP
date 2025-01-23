@@ -23,11 +23,12 @@ int main() {
 
     while (1) {
         wypiszPlansze(planszaWidoczna);
+        printf("Obecny wynik: %d\n", wynik);
         printf("Podaj polecenie (f x y - flaga, r x y - odkryj, s - przerwij gre): ");
         scanf(" %c", &komenda);
 
         if (komenda == 's') {
-            printf("Przerwano gre.\n");
+            printf("Przerwano gre. Ostateczny wynik: %d\n", wynik);
             wypiszPlansze(plansza);
             break;
         }
@@ -54,7 +55,7 @@ int main() {
             }
 
             if (plansza[wiersz][kolumna] == 'X' && planszaWidoczna[wiersz][kolumna] != 'F') {
-                printf("BUM! Trafiles na mine. Koniec gry.\n");
+                printf("BUM! Trafiles na mine. Koniec gry. Ostateczny wynik: %d\n", wynik);
                 wypiszPlansze(plansza);
                 break;
             }
@@ -63,7 +64,7 @@ int main() {
             wynik += mnoznikWyniku;
 
             if (sprawdzWygrana()) {
-                printf("Gratulacje! Wygrales!\n");
+                printf("Gratulacje! Wygrales! Ostateczny wynik: %d\n", wynik);
                 wypiszPlansze(plansza);
                 zaktualizujNajlepszeWyniki(wynik);
                 break;
